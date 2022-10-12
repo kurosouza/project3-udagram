@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   setTokenAndUser(token: string, user: User) {
+    console.log(`Localstorage Token key ${JWT_LOCALSTORE_KEY} | value ${token}`);
     localStorage.setItem(JWT_LOCALSTORE_KEY, token);
     localStorage.setItem(USER_LOCALSTORE_KEY, JSON.stringify(user));
     this.api.setAuthToken(token);
@@ -51,6 +52,7 @@ export class AuthService {
     return this.api.post('/users/auth/',
               {email: user.email, password: password})
               .then((res) => {
+                console.log(`setting token after registration: ${res.token}`)
                 this.setTokenAndUser(res.token, res.user);
                 return res;
               })
