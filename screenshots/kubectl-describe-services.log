@@ -1,0 +1,115 @@
+(base) cd0354-monolith-to-microservices-project > kubectl describe services -n udagram
+Name:              backend-feed
+Namespace:         udagram
+Labels:            run=backend-feed
+Annotations:       <none>
+Selector:          run=backend-feed
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.100.164.176
+IPs:               10.100.164.176
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         <none>
+Session Affinity:  None
+Events:            <none>
+
+
+Name:              backend-user
+Namespace:         udagram
+Labels:            run=backend-user
+Annotations:       <none>
+Selector:          run=backend-user
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.100.158.117
+IPs:               10.100.158.117
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         <none>
+Session Affinity:  None
+Events:            <none>
+
+
+Name:              frontend-service
+Namespace:         udagram
+Labels:            run=frontend-service
+Annotations:       <none>
+Selector:          run=frontend-service
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.100.150.55
+IPs:               10.100.150.55
+Port:              <unset>  80/TCP
+TargetPort:        80/TCP
+Endpoints:         <none>
+Session Affinity:  None
+Events:            <none>
+
+
+Name:                     publicfrontend
+Namespace:                udagram
+Labels:                   app=frontend
+Annotations:              <none>
+Selector:                 app=frontend
+Type:                     LoadBalancer
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.100.85.174
+IPs:                      10.100.85.174
+LoadBalancer Ingress:     a7f854c3a3bff4ea383f50bd4c97afc8-1371078635.us-east-2.elb.amazonaws.com
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  31307/TCP
+Endpoints:                172.31.12.142:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age   From                Message
+  ----    ------                ----  ----                -------
+  Normal  EnsuringLoadBalancer  47m   service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   47m   service-controller  Ensured load balancer
+
+
+Name:                     publicreverseproxy
+Namespace:                udagram
+Labels:                   app=reverseproxy
+Annotations:              <none>
+Selector:                 app=reverseproxy
+Type:                     LoadBalancer
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.100.189.103
+IPs:                      10.100.189.103
+LoadBalancer Ingress:     aa6a50b728b3042328878c78257ff515-851797090.us-east-2.elb.amazonaws.com
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  31177/TCP
+Endpoints:                172.31.38.115:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age   From                Message
+  ----    ------                ----  ----                -------
+  Normal  EnsuringLoadBalancer  47m   service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   47m   service-controller  Ensured load balancer
+
+
+Name:              reverseproxy
+Namespace:         udagram
+Labels:            run=reverseproxy
+Annotations:       <none>
+Selector:          run=reverseproxy
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.100.177.14
+IPs:               10.100.177.14
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         <none>
+Session Affinity:  None
+Events:            <none>
